@@ -1,0 +1,83 @@
+<div class="container text-center">
+  <div class="d-flex justify-content-around mb-5">
+     <h2>Countries</h2>
+      <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2">Create</a>
+    </div>
+    <table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Country Name</th>
+        <th scope="col">Population</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let country of countries; let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{country.cname}}</td>
+            <td>{{country.population}}</td>
+            <td>
+              <div class="d-flex justify-content-around">
+                <a href="" class="btn btn-primary" data-bs-toggle="modal" (click)="edit(country.cname)" data-bs-target="#exampleModal1">Edit</a>
+                <button class="btn btn-danger" (click)="delete(country.cname)">Delete</button>
+              </div>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="country">
+            <div class="mb-3">
+              <label class="form-label">Country Name</label>
+              <input type="text" formControlName="cname" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Population</label>
+              <input type="number" formControlName="population" class="form-control" >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button #closeModal1 type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" (click)="saveChanges()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal2" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="country">
+            <div class="mb-3">
+              <label  class="form-label">Country Name</label>
+              <input type="text" formControlName="cname" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Population</label>
+              <input type="number" formControlName="population" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button #closeModal2 type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,83 @@
+<div class="container text-center">
+    <div class="d-flex justify-content-around mb-5">
+       <h2>Specialize</h2>
+        <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2">Create</a>
+      </div>
+      <table class="table table-success table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Specialization Id</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let specialize of specializeArr; let i = index;">
+              <td>{{i+1}}</td>
+              <td>{{specialize.id}}</td>
+              <td>{{specialize.email}}</td>
+              <td>
+                <div class="d-flex justify-content-around">
+                  <a href="" class="btn btn-primary" data-bs-toggle="modal" (click)="edit(specialize.id, specialize.email)" data-bs-target="#exampleModal1">Edit</a>
+                  <button class="btn btn-danger" (click)="delete(specialize.id, specialize.email)">Delete</button>
+                </div>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+    </div>
+  
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Specialization</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="specialize">
+              <div class="mb-3">
+                <label class="form-label">Specialization Id</label>
+                <input type="number" formControlName="id" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="text" formControlName="email" class="form-control" >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button #closeModal1 type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" (click)="saveChanges()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="modal fade" id="exampleModal2" tabindex="-1"  aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create Specialization</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="specialize">
+                <div class="mb-3">
+                  <label class="form-label">Specialization Id</label>
+                  <input type="number" formControlName="id" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="text" formControlName="email" class="form-control" >
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button #closeModal2 type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
